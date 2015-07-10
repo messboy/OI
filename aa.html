@@ -5,13 +5,40 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
 
 
-
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <title>Oi by messboy</title>
   </head>
 
-  <body>
+<body>
 
-XDDDDDDDDDDDD
-    sadasdsad
-  </body>
+	<section class="main-content">
+		<input id="country" value=''/>
+		<button id="search">search</button>
+		<div id="info"></div>
+	</section>
+</body>
+<script>
+
+$("#search").click(function(){
+
+	var data ={
+		key: 'AIzaSyBSnz1xTHQNO0ZE8xxWqS8QTwPhF7ByFp6Y',
+		cx: '003565169662897413323:u9xnmxccsde',
+		q : $("#country").val()
+	};
+       $.ajax({
+	  url: "https://www.googleapis.com/customsearch/v1?key=AIzaSyBSnz1THQNO0ZE8xxWqS8QTwPhF7ByFp6Y&cx=003565169662897413323:u9xnmxccsde&q="+data.q,
+	  dataType  : "json"
+	})
+	.done(function(data) {
+		console.log(data.items);
+		$("#info").empty();
+		$.each(data.items, function(index, info){
+			$("#info").append("<p><a href='"+info.link+"'>"+info.htmlTitle+"</a></p>");
+		});
+	});
+});
+
+
+</script>
 </html>
